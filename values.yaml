@@ -25,22 +25,23 @@ logs:
 # on some bare-metal installations, we need special privileges to run traefik on port 80. If traefik reports an error try
 # uncommenting the following lines.
 
-#deployment:
-#  podSecurityContext:
-#    runAsNonRoot: false
+deployment:
+  podSecurityContext:
+    runAsNonRoot: false
 #
-#securityContext:
-#  runAsNonRoot: false
-#  runAsUser: 0
-#  capabilities:
-#    drop: []
+securityContext:
+  runAsNonRoot: false
+  runAsUser: 0
+  capabilities:
+    drop: []
 
+#end security
 ports:
   web:
-    port: 8099
+    port: 80
   websecure:
-    port: 8443
-    exposedPort: 8443
+    port: 443
+    exposedPort: 443
 
 # we enable gateway-api features
 providers:
