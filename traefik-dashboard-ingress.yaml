@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traefik-dashboard-ingress
+  namespace: traefik
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: traefik.local
+      http:
+        paths:
+          - path: /dashboard
+            pathType: Prefix
+            backend:
+              service:
+                name: traefik        # replace if your service has a different name
+                port:
+                  number: 8080       # replace if your dashboard port is different
