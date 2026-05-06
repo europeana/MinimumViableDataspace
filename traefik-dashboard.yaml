@@ -3,6 +3,8 @@ kind: IngressRoute
 metadata:
   name: traefik-dashboard
   namespace: traefik
+image:
+  tag: "v3.6.13"
 spec:
   entryPoints:
     - traefik
