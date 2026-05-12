@@ -7,7 +7,7 @@ spec:
   ingressClassName: traefik
   rules:
     - host: mvd.test.eanadev.org
-      https:
+      http:
         paths:
           - path: /dashboard
             pathType: Prefix
