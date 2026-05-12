@@ -9,7 +9,7 @@ spec:
     - host: mvd.test.eanadev.org
       http:
         paths:
-          - path: /dashboard
+          - path: /dashboard/
             pathType: Prefix
             backend:
               service:
