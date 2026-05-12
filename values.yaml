@@ -67,7 +67,7 @@ api:  # @schema additionalProperties: false
   # -- Enable the dashboard
   dashboard: true
   # -- Custom name for the dashboard (v3.7+).
-  dashboardName: "Traefik Dashboard"  # @schema type:[string, null]
+  #dashboardName: "Traefik Dashboard"  # @schema type:[string, null] 
   # -- Disable the advertisement from the dashboard.
   disableDashboardAd: true # @schema type:[boolean, null]
   # -- Enable the insecure API (HTTP)
@@ -89,7 +89,7 @@ ingressRoute:
     #SG: eanadev.org host? 
     #annotations: {}
     # -- Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
-    labels: {}
+    #labels: {}
     # -- The router match rule used for the dashboard ingressRoute
     matchRule: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
     # -- The internal service used for the dashboard ingressRoute
@@ -109,9 +109,9 @@ ingressRoute:
     # -- Create an IngressRoute for the healthcheck probe
     enabled: true
     # -- Additional ingressRoute annotations (e.g. for kubernetes.io/ingress.class)
-    annotations: {}
+    #annotations: {}
     # -- Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
-    labels: {}
+    #labels: {}
     # -- The router match rule used for the healthcheck ingressRoute
     matchRule: PathPrefix(`/ping`)
     # -- The internal service used for the healthcheck ingressRoute
@@ -121,7 +121,8 @@ ingressRoute:
         kind: TraefikService
       # -- Specify the allowed entrypoints to use for the healthcheck ingress route, (e.g. traefik, web, websecure).
       # By default, it's using traefik entrypoint, which is not exposed.
-    entryPoints: ["traefik"]
+    #entryPoints: ["traefik"]
+    entryPoints: ["web"]
     # -- Additional ingressRoute middlewares (e.g. for authentication)
     #middlewares: []
     # -- TLS options (e.g. secret containing certificate)
