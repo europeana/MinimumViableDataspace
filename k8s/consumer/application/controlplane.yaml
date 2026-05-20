@@ -101,6 +101,7 @@ spec:
       sectionName: http
   hostnames:
     - cp.consumer.localhost
+    - mvd-cons-cp.test.eanadev.org
   rules:
     - matches:
         - path:
