@@ -11,9 +11,13 @@
 #      Metaform Systems, Inc. - initial API and implementation
 #
 
-#SG see default configs: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+#SG see default configs in github 
+#V39.0 for Helm 3.6 https://github.com/traefik/traefik-helm-chart/blob/v39.0/traefik/values.yaml	
+#latest https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
 
 logs:
+  general:
+    level: DEBUG
   access:
     enabled: true
     format: json
@@ -21,8 +25,14 @@ logs:
       general:
         # full field list
         # https://doc.traefik.io/traefik/reference/install-configuration/observability/logs-and-accesslogs/#json-format-fields
+        defaultmode: keep
         names:
-          RouterName: drop
+          RouterName: keep
+          ServiceName: keep
+      headers:
+        # -- [Limit logged fields or headers](https://doc.traefik.io/traefik/observability/access-logs/#limiting-the-fieldsincluding-headers)
+        defaultmode: keep
+
 
 # on some bare-metal installations, we need special privileges to run traefik on port 80. If traefik reports an error try
 # uncommenting the following lines.
@@ -44,6 +54,12 @@ ports:
   websecure:
     port: 443
     exposedPort: 443
+  traefik:
+    port: 8080
+    expose: true
+    exposedPort: 8080
+    protocol: TCP
+
 
 # we enable gateway-api features
 providers:
@@ -75,7 +91,7 @@ api:  # @schema additionalProperties: false
   # -- Enable the debug API
   debug:  true # @schema type:[boolean, null]
   # -- Configure API basePath
-  #basePath: ""  # @schema type:[string, null]; default: "/"
+  #basePath: "/dashboard/"  # @schema type:[string, null]; default: "/"
 
   #SG ENABLE Dashboard Routes
     # -- Only dashboard & healthcheck IngressRoute are supported.
@@ -101,6 +117,7 @@ ingressRoute:
       # By default, it's using traefik entrypoint, which is not exposed.
       # /!\ Do not expose your dashboard without any protection over the internet /!\
     entryPoints: ["traefik"]
+    #entryPoints: ["traefik","web","websecure"]
     # -- Additional ingressRoute middlewares (e.g. for authentication)
     #middlewares: []
       # -- TLS options (e.g. secret containing certificate)
@@ -121,10 +138,22 @@ ingressRoute:
         kind: TraefikService
       # -- Specify the allowed entrypoints to use for the healthcheck ingress route, (e.g. traefik, web, websecure).
       # By default, it's using traefik entrypoint, which is not exposed.
-    #entryPoints: ["traefik"]
-    entryPoints: ["web"]
+    entryPoints: ["traefik"]
+    #entryPoints: ["web"]
+    #entryPoints: ["traefik","web","websecure"]
     # -- Additional ingressRoute middlewares (e.g. for authentication)
     #middlewares: []
     # -- TLS options (e.g. secret containing certificate)
     #  tls: {}
 
+## Tracing
+# -- https://doc.traefik.io/traefik/observability/tracing/overview/
+tracing:  # @schema additionalProperties: false
+  # -- Enables tracing for internal resources. Default: false.
+  addInternals: false
+  # -- Defines additional resource attributes to be sent to the collector.
+  resourceAttributes: {}
+  # -- Defines the list of request headers to add as attributes. It applies to client and server kind spans.
+  capturedRequestHeaders: []
+  # -- Defines the list of response headers to add as attributes. It applies to client and server kind spans.
+  capturedResponseHeaders: []
