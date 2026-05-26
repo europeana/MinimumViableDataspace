@@ -100,7 +100,7 @@ spec:
       namespace: provider
   hostnames:
     - dp.provider.localhost
-    - mvd-prov-dp.test.eanadev.org
+    - prov-dp.mvd.test.eanadev.org
   rules:
     # /dp/public → public port 11002
     - matches:

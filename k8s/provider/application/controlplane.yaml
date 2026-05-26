@@ -101,7 +101,7 @@ spec:
       sectionName: http
   hostnames:
     - cp.provider.localhost
-    - mvd-prov-cp.test.eanadev.org
+    - prov-cp.mvd.test.eanadev.org
   rules:
     - matches:
         - path:

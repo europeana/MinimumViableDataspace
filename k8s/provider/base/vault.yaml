@@ -200,6 +200,7 @@ spec:
     - name: provider-gateway
   hostnames:
     - vault.provider.localhost
+    - prov-vault.mvd.test.eanadev.org
   rules:
     - matches:
         - path:

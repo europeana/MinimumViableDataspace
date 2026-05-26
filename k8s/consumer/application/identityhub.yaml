@@ -106,6 +106,7 @@ spec:
       sectionName: http
   hostnames:
     - ih.consumer.localhost
+    - cons-ih.mvd.test.eanadev.org
   rules:
     - matches:
         - path:

@@ -111,6 +111,7 @@ spec:
       sectionName: http
   hostnames:
     - issuer.localhost
+    - com-is.mvd.test.eanadev.org
   rules:
     # Issuer Admin API
     - matches:

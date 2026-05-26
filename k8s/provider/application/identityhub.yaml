@@ -106,6 +106,7 @@ spec:
       sectionName: http
   hostnames:
     - ih.provider.localhost
+    - prov-ih.mvd.test.eanadev.org
   rules:
     - matches:
         - path:
