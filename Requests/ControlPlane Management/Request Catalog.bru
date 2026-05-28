@@ -58,5 +58,7 @@ script:post-response {
 
 settings {
   encodeUrl: true
-  timeout: 0
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5
 }
