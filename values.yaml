@@ -65,7 +65,6 @@ ports:
 providers:
   kubernetesGateway:
     enabled: true
-    experimentalChannel: true
   kubernetesCRD:
     # -- Load Kubernetes IngressRoute provider
     enabled: true
