@@ -107,6 +107,14 @@ spec:
         - path:
             type: PathPrefix
             value: /
+      #SG: CORS Midleware
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.containo.us
+            kind: Middleware
+            name: edc-cors
+            namespace: traefik
       backendRefs:
         - name: controlplane
           port: 8081
