@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: edc-cors-config
+  namespace: consumer
+spec:
+  headers:
+    accessControlAllowOrigin: "https://dmd.test.eanadev.org"
+    accessControlAllowMethods: ["GET","POST","PUT","DELETE","OPTIONS"]
+    accessControlAllowHeaders: ["Authorization","Content-Type","Origin","Cookie"]
+    accessControlAllowCredentials: true
+    accessControlMaxAge: 3600
