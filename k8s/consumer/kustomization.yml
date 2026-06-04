@@ -17,7 +17,7 @@ resources:
   - base/gateway.yaml
   - base/postgres.yaml
   - application/controlplane-config.yaml
-  - application/controlplane-cors-config.yaml
+  #- application/controlplane-cors-config.yaml
   - application/controlplane.yaml
   - application/controlplane-seed.yaml
   - application/identityhub-config.yaml
