@@ -113,7 +113,7 @@ spec:
           extensionRef:
             group: traefik.containo.us
             kind: Middleware
-            name: edc-cors-config
+            name: edc-cors-config-consumer
       backendRefs:
         - name: controlplane
           port: 8081
