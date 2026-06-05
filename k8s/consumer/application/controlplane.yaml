@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: controlplane
-          image: ghcr.io/eclipse-edc/minimumviabledataspace/controlplane:latest
+          image: ghcr.io/eclipse-edc/minimumviabledataspace/controlplane:0.17.0
           imagePullPolicy: Always
           envFrom:
             - configMapRef: { name: controlplane-config }
@@ -108,12 +108,12 @@ spec:
             type: PathPrefix
             value: /
       #SG: CORS Midleware
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.containo.us
-            kind: Middleware
-            name: edc-cors-config-consumer
+#      filters:
+#        - type: ExtensionRef
+#          extensionRef:
+#            group: traefik.containo.us
+#            kind: Middleware
+#            name: edc-cors-config-consumer
       backendRefs:
         - name: controlplane
           port: 8081

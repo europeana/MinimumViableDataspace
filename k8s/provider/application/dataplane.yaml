@@ -34,7 +34,8 @@ spec:
     spec:
       containers:
         - name: dataplane
-          image: ghcr.io/eclipse-edc/minimumviabledataspace/dataplane:latest
+#          image: ghcr.io/eclipse-edc/minimumviabledataspace/dataplane:latest
+          image: ghcr.io/eclipse-edc/minimumviabledataspace/dataplane:0.17.0
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

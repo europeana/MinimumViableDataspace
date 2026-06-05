@@ -13,11 +13,15 @@ spec:
       - "PUT"
       - "DELETE"
       - "OPTIONS"
-    accessControlAllowHeaders: 
-      - "Authorization"
-      - "Content-Type"
-      - "Origin"
-      - "Cookie"
-      - "x-api-key"
+    accessControlAllowHeaders:
+      - "*"  
+ #     - "Authorization"
+ #     - "Content-Type"
+ #     - "Origin"
+ #     - "Cookie"
+ #     - "x-api-key"
     #accessControlAllowCredentials: true
+    accessControlExposeHeaders: 
+       - "*"
     accessControlMaxAge: 3600
+    addVaryHeader: true
