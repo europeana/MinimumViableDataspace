@@ -35,7 +35,9 @@ spec:
       containers:
         - name: controlplane
  #         image: ghcr.io/eclipse-edc/minimumviabledataspace/controlplane:latest
-          image: ghcr.io/eclipse-edc/minimumviabledataspace/controlplane:0.17.0
+ #V0.17.1
+          image: ghcr.io/eclipse-edc/minimumviabledataspace/controlplane:dd342cf3922827512293c6a705208a4b20c7f2aa
+ #         image: ghcr.io/eclipse-edc/minimumviabledataspace/controlplane:0.17.0
           imagePullPolicy: Always
           envFrom:
             - configMapRef: { name: controlplane-config }
