@@ -125,11 +125,11 @@ spec:
               type: ReplacePrefixMatch
               replacePrefixMatch: /api/check/     
       #SG: CORS Midleware
-        - type: ExtensionRef
-          extensionRef:
-            group:  traefik.io
-            kind: Middleware
-            name: prov-edc-cors-config
+#        - type: ExtensionRef
+#          extensionRef:
+#            group:  traefik.io
+#            kind: Middleware
+#            name: prov-edc-cors-config
       #      name: traefik-globalcorsmiddleware@kubernetescrd
       backendRefs:
         - name: controlplane
