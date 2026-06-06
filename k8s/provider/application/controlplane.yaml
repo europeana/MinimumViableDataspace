@@ -130,7 +130,7 @@ spec:
           urlRewrite:
             path:
               type: ReplacePrefixMatch
-              replacePrefixMatch: /     
+              replacePrefixMatch: /api/check/     
       #SG: CORS Midleware
 #      filters:
 #        - type: ExtensionRef
