@@ -105,7 +105,7 @@ spec:
       namespace: consumer
   hostnames:
     - dp.consumer.localhost
-	- cons-dp.mvd.test.eanadev.org
+    - cons-dp.mvd.test.eanadev.org
   rules:
     - matches:
         - path:
