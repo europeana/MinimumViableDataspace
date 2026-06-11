@@ -20,6 +20,8 @@ resources:
   - application/controlplane-cors-config.yaml
   - application/controlplane.yaml
   - application/controlplane-seed.yaml
+  - application/dataplane-config.yaml
+  - application/dataplane.yaml
   - application/identityhub-config.yaml
   - application/identityhub.yaml
   - application/identityhub-seed.yaml
