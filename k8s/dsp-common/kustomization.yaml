@@ -12,7 +12,8 @@
 #
 
 resources:
-  - ./dsp-common
-  - ./dsp-consumer
-  - ./dsp-provider
-  - ./dsp-issuer
+  - namespace.yaml
+  - gateway-class.yaml
+  - gateway.yaml
+  - postgres.yaml
+  - keycloak.yaml
