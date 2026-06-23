@@ -13,6 +13,6 @@
 
 resources:
   - ./dsp-common
-  - ./dsp-consumer
-  - ./dsp-provider
-  - ./dsp-issuer
+#  - ./dsp-consumer
+#  - ./dsp-provider
+#  - ./dsp-issuer
