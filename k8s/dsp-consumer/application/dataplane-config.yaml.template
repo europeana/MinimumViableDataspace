@@ -40,6 +40,9 @@ data:
   edc.vault.hashicorp.token: "root"
 
   JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044"
+  #SG: disable open telemetry which is included in the original image and activated automatically
+  OTEL_JAVAAGENT_ENABLED=false
+  OTEL_SDK_DISABLED=true  
 
   edc.datasource.default.url: "jdbc:postgresql://postgres.consumer-${ENVIRONMENT}.svc.cluster.local:5432/dataplane"
   edc.datasource.default.user: "dp"

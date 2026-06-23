@@ -72,3 +72,7 @@ data:
   edc.iam.trusted-issuer.issuer.id: "did:web:issuerservice.issuer-${ENVIRONMENT}.svc.cluster.local%3A10016:issuer"
 
   JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044"
+  #SG: disable open telemetry which is included in the original image and activated automatically
+  OTEL_JAVAAGENT_ENABLED=false
+  OTEL_SDK_DISABLED=true
+  
