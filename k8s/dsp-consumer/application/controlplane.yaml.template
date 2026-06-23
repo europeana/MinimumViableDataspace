@@ -35,7 +35,7 @@ spec:
       containers:
         - name: controlplane
           image: ghcr.io/eclipse-dataspace-hub/jad/controlplane:3ec53b393a79aa43756111c9c2a8b5135c3b2cc6
-          imagePullPolicy: Always
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           envFrom:
             - configMapRef: { name: controlplane-config }
           ports:
