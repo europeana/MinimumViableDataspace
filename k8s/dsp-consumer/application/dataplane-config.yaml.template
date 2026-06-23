@@ -16,7 +16,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dataplane-config
-  namespace: consumer
+  namespace: consumer-${ENVIRONMENT}
 data:
   edc.hostname: "dataplane.consumer-${ENVIRONMENT}.svc.cluster.local"
   dataplane.id: "consumer-dataplane"
