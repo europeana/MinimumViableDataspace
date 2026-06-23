@@ -280,7 +280,7 @@ spec:
       kind: Gateway
       sectionName: http
   hostnames:
-    - keycloak.localhost
+    - keycloak-${ENVIRONMENT}.localhost
   rules:
     - matches:
         - path:
