@@ -67,7 +67,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-init
-  namespace: consumer
+  namespace: consumer-${ENVIRONMENT}
 data:
   init.sql: |
     CREATE DATABASE identityhub;
