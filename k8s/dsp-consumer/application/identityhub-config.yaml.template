@@ -34,8 +34,8 @@ data:
   web.http.sts.path: "/api/sts"
   JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044"
   #SG: disable open telemetry which is included in the original image and activated automatically
-  OTEL_JAVAAGENT_ENABLED: false
-  OTEL_SDK_DISABLED: true
+  OTEL_JAVAAGENT_ENABLED: "false"
+  OTEL_SDK_DISABLED: "true"
 
   edc.vault.hashicorp.url: "http://vault.consumer-${ENVIRONMENT}.svc.cluster.local:8200"
   edc.vault.hashicorp.token: "root"
