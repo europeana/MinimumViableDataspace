@@ -40,10 +40,10 @@ data:
   edc.vault.hashicorp.token: "root"
 
   JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044"
-  OTEL_EXPORTER_OTLP_ENDPOINT: "${ELASTIC_APM_SERVERS}"
-  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+  #OTEL_EXPORTER_OTLP_ENDPOINT: "${ELASTIC_APM_SERVERS}"
+  #OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
   #OTEL_EXPORTER_OTLP_HEADERS: "Authorization=Bearer your_apm_secret_token"
-  OTEL_RESOURCE_ATTRIBUTES: "service.name=dp-consumer-${ENVIRONMENT},deployment.environment=${ENVIRONMENT}"
+  #OTEL_RESOURCE_ATTRIBUTES: "service.name=dp-consumer-${ENVIRONMENT},deployment.environment=${ENVIRONMENT}"
   
   edc.datasource.default.url: "jdbc:postgresql://postgres.consumer-${ENVIRONMENT}.svc.cluster.local:5432/dataplane"
   edc.datasource.default.user: "dp"
