@@ -36,6 +36,10 @@ data:
   #SG: disable open telemetry which is included in the original image and activated automatically
   #OTEL_JAVAAGENT_ENABLED: "false"
   #OTEL_SDK_DISABLED: "true"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "${ELASTIC_APM_SERVERS}"
+  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+  #OTEL_EXPORTER_OTLP_HEADERS: "Authorization=Bearer your_apm_secret_token"
+  OTEL_RESOURCE_ATTRIBUTES: "service.name=ih-consumer-${ENVIRONMENT},deployment.environment=${ENVIRONMENT}"
 
   edc.vault.hashicorp.url: "http://vault.consumer-${ENVIRONMENT}.svc.cluster.local:8200"
   edc.vault.hashicorp.token: "root"
