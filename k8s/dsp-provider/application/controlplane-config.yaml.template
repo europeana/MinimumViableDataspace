@@ -16,7 +16,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: controlplane-config
-  namespace: provider
+  namespace: provider-${ENVIRONMENT}
 data:
   # base config
   edc.hostname: "controlplane.provider-${ENVIRONMENT}.svc.cluster.local"
