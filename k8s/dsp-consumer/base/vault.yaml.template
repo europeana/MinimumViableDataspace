@@ -68,12 +68,13 @@ spec:
   template:
     metadata:
       labels:
-        type: edc-job-${ENVIRONMENT}
+        type: edc-job
     spec:
       serviceAccountName: vault-auth
       containers:
         - name: vault-cli
           image: hashicorp/vault:latest
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           securityContext:
             capabilities:
               add:

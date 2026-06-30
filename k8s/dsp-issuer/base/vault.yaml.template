@@ -65,12 +65,13 @@ spec:
   template:
     metadata:
       labels:
-        type: edc-job-${ENVIRONMENT}
+        type: edc-job
     spec:
       serviceAccountName: vault-auth
       containers:
         - name: vault-cli
           image: hashicorp/vault:latest
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           env:
             - name: VAULT_ADDR
               value: "http://vault.dsp-issuer-${ENVIRONMENT}.svc.cluster.local:8200"

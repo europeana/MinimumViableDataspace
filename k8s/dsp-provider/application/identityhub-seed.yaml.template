@@ -21,19 +21,20 @@ metadata:
   namespace: provider-${ENVIRONMENT}
   labels:
     app: identityhub-seed
-    type: edc-job-${ENVIRONMENT}
+    type: edc-job
 spec:
   backoffLimit: 5
   template:
     metadata:
       labels:
         app: identityhub-seed
-        type: edc-job-${ENVIRONMENT}
+        type: edc-job
     spec:
       restartPolicy: OnFailure
       initContainers:
         - name: wait-for-dependencies
           image: curlimages/curl:8.20.0
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           env:
             - name: KC_HOST
               value: "http://keycloak.mvd-common-${ENVIRONMENT}.svc.cluster.local:8080"
