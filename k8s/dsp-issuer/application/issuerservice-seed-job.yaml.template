@@ -22,7 +22,7 @@ metadata:
   labels:
     app: issuerservice-seed
     platform: edcv
-    type: edc-job
+    type: edc-job-${ENVIRONMENT}
 spec:
   backoffLimit: 5
   template:
@@ -30,14 +30,13 @@ spec:
       labels:
         app: issuerservice-seed
         platform: edcv
-        type: edc-job
+        type: edc-job-${ENVIRONMENT}
     spec:
       restartPolicy: OnFailure
       initContainers:
         # Wait for issuerservice to be ready
         - name: wait-for-issuerservice
           image: curlimages/curl:8.20.0
-          imagePullPolicy: ${IMAGE_PULL_POLICY}
           command:
             - sh
             - -c

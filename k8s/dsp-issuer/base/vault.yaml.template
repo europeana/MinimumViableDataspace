@@ -65,7 +65,7 @@ spec:
   template:
     metadata:
       labels:
-        type: edc-job
+        type: edc-job-${ENVIRONMENT}
     spec:
       serviceAccountName: vault-auth
       containers:

@@ -22,20 +22,19 @@ metadata:
   labels:
     app: controlplane-seed
     platform: edcv
-    type: edc-job
+    type: edc-job-${ENVIRONMENT}
 spec:
   backoffLimit: 5
   template:
     metadata:
       labels:
         app: controlplane-seed
-        type: edc-job
+        type: edc-job-${ENVIRONMENT}
     spec:
       restartPolicy: OnFailure
       initContainers:
         - name: wait-for-controlplane
           image: curlimages/curl:8.20.0
-          imagePullPolicy: ${IMAGE_PULL_POLICY}
           command:
             - sh
             - -c
