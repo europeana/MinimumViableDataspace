@@ -54,7 +54,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  namespace: issuer
+  namespace: dsp-issuer-${ENVIRONMENT}
 spec:
   selector:
     app: postgres
@@ -67,7 +67,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-init
-  namespace: issuer
+  namespace: dsp-issuer-${ENVIRONMENT}
 data:
   init.sql: |
     GRANT ALL PRIVILEGES ON DATABASE issuerservice TO issuer;
