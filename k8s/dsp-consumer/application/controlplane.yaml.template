@@ -101,6 +101,7 @@ spec:
       sectionName: http
   hostnames:
     - cp.consumer-${ENVIRONMENT}.localhost
+    - cp.consumer-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
   rules:
     - matches:
         - path:

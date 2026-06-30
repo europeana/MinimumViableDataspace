@@ -101,7 +101,8 @@ spec:
     - name: consumer-gateway
       namespace: consumer-${ENVIRONMENT}
   hostnames:
-    - dp.consumer.localhost
+    - dp.consumer-${ENVIRONMENT}.localhost
+    - dp.consumer-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
   rules:
     - matches:
         - path:

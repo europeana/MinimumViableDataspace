@@ -15,4 +15,4 @@ resources:
   - ./dsp-common
   - ./dsp-consumer
   - ./dsp-provider
-#  - ./dsp-issuer
+  - ./dsp-issuer
