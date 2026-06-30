@@ -21,14 +21,14 @@ metadata:
   namespace: provider-${ENVIRONMENT}
   labels:
     app: identityhub-seed
-    type: edc-job
+    type: edc-job-${ENVIRONMENT}
 spec:
   backoffLimit: 5
   template:
     metadata:
       labels:
         app: identityhub-seed
-        type: edc-job
+        type: edc-job-${ENVIRONMENT}
     spec:
       restartPolicy: OnFailure
       initContainers:
