@@ -30,6 +30,7 @@ spec:
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.6
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           args:
             - "start-dev"
             - "--health-enabled=true"

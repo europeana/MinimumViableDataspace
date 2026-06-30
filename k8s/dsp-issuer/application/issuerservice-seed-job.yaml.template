@@ -37,6 +37,7 @@ spec:
         # Wait for issuerservice to be ready
         - name: wait-for-issuerservice
           image: curlimages/curl:8.20.0
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           command:
             - sh
             - -c

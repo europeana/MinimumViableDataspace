@@ -35,6 +35,7 @@ spec:
       initContainers:
         - name: wait-for-controlplane
           image: curlimages/curl:8.20.0
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           command:
             - sh
             - -c

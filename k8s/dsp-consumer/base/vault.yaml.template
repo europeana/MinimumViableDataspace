@@ -32,6 +32,7 @@ spec:
       containers:
         - name: vault
           image: hashicorp/vault:latest
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           ports:
             - containerPort: 8200
           securityContext:

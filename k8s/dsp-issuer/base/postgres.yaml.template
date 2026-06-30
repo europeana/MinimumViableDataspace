@@ -33,6 +33,7 @@ spec:
       containers:
         - name: postgres
           image: postgres:17.7-alpine
+          imagePullPolicy: ${IMAGE_PULL_POLICY}
           ports:
             - containerPort: 5432
           env:
