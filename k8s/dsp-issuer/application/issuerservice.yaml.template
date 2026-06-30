@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: issuerservice
-          image: ghcr.io/eclipse-dataspace-hub/minimumviabledataspace/issuerservice:${MVD_IMAGE_TAG}
+          image: ghcr.io/eclipse-edc/minimumviabledataspace/issuerservice:${MVD_IMAGE_TAG}
           imagePullPolicy: ${IMAGE_PULL_POLICY}
           ports:
             - containerPort: 80
