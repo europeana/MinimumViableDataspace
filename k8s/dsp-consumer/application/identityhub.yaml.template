@@ -106,6 +106,7 @@ spec:
       sectionName: http
   hostnames:
     - ih.consumer-${ENVIRONMENT}.localhost
+    - ih.consumer-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
   rules:
     - matches:
         - path:
