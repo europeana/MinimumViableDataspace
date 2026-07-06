@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: ${IMAGE_PULL_POLICY}
           env:
             - name: KC_HOST
-              value: "http://keycloak.mvd-common-${ENVIRONMENT}.svc.cluster.local:8080"
+              value: "http://keycloak.dsp-common-${ENVIRONMENT}.svc.cluster.local:8080"
 
           command:
             - sh
@@ -70,7 +70,7 @@ spec:
           image: curlimages/curl:latest
           env:
               - name: KC_HOST
-                value: "http://keycloak.mvd-common-${ENVIRONMENT}.svc.cluster.local:8080"
+                value: "http://keycloak.dsp-common-${ENVIRONMENT}.svc.cluster.local:8080"
               - name: PROVISIONER_CLIENT_ID
                 value: "provisioner"
               - name: PROVISIONER_CLIENT_SECRET
