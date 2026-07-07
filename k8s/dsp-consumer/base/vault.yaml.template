@@ -181,7 +181,7 @@ spec:
               EOF
               
               echo "Vault bootstrap completed successfully!"
-      restartPolicy: OnFailure
+      restartPolicy: Never
 
 
 ---

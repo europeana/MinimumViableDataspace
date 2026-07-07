@@ -31,7 +31,7 @@ spec:
         app: controlplane-seed
         type: edc-job-${ENVIRONMENT}
     spec:
-      restartPolicy: OnFailure
+      restartPolicy: Never
       initContainers:
         - name: wait-for-controlplane
           image: curlimages/curl:8.20.0
