@@ -282,6 +282,7 @@ spec:
       sectionName: http
   hostnames:
     - keycloak-${ENVIRONMENT}.localhost
+    - keycloak.localhost
   rules:
     - matches:
         - path:
