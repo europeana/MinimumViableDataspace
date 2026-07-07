@@ -50,7 +50,7 @@ spec:
               echo ""
               echo "IdentityHub is ready!"
 
-              until curl -sf http://issuerservice.issuer-${ENVIRONMENT}.svc.cluster.local:10010/api/check/readiness; do
+              until curl -sf http://issuerservice.dsp-issuer-${ENVIRONMENT}.svc.cluster.local:10010/api/check/readiness; do
                 echo "Waiting for issuer service to be ready..."
                 sleep 5
               done
@@ -90,7 +90,7 @@ spec:
               - name: ISSUER_CLIENT_SECRET
                 value: "issuer-secret"
               - name: ISSUER_ADMIN_URL
-                value: "http://issuerservice.issuer-${ENVIRONMENT}.svc.cluster.local:10013/api/admin/v1alpha"
+                value: "http://issuerservice.dsp-issuer-${ENVIRONMENT}.svc.cluster.local:10013/api/admin/v1alpha"
           command:
             - sh
             - -c
@@ -212,7 +212,7 @@ spec:
                 -H "Authorization: Bearer ${ADMIN_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
-                      \"issuerDid\": \"did:web:issuerservice.issuer-${ENVIRONMENT}.svc.cluster.local%3A10016:issuer\",
+                      \"issuerDid\": \"did:web:issuerservice.dsp-issuer-${ENVIRONMENT}.svc.cluster.local%3A10016:issuer\",
                       \"holderPid\": \"${HOLDER_PID}\",
                       \"credentials\": [{
                         \"format\": \"vc20-bssl/jwt\",
