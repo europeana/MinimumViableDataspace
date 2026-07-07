@@ -48,7 +48,7 @@ spec:
               echo "Controlplane is ready!"
       containers:
         - name: seed-controlplane
-          image: curlimages/curl:latest
+          image: curlimages/curl:8.20.0
           command:
             - sh
             - -c

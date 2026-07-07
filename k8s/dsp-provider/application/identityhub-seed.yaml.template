@@ -67,7 +67,7 @@ spec:
       containers:
 
         - name: seed-identityhub
-          image: curlimages/curl:latest
+          image: curlimages/curl:8.20.0
           env:
               - name: KC_HOST
                 value: "http://keycloak.dsp-common-${ENVIRONMENT}.svc.cluster.local:8080"
