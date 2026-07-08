@@ -61,7 +61,7 @@ metadata:
   name: vault-bootstrap
   namespace: dsp-issuer-${ENVIRONMENT}
 spec:
-  backoffLimit: 10
+  backoffLimit: 3
   template:
     metadata:
       labels:

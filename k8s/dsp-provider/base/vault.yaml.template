@@ -62,7 +62,7 @@ metadata:
   name: vault-bootstrap
   namespace: provider-${ENVIRONMENT}
 spec:
-  backoffLimit: 10
+  backoffLimit: 3
   template:
     metadata:
       labels:
