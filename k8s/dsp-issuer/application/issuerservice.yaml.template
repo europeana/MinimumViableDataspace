@@ -111,6 +111,7 @@ spec:
       sectionName: http
   hostnames:
     - dsp-issuer-${ENVIRONMENT}.localhost
+    - dsp-issuer-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
   rules:
     # Issuer Admin API
     - matches:
