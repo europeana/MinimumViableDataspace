@@ -24,14 +24,14 @@ metadata:
     platform: edcv
     type: edc-job-${ENVIRONMENT}
 spec:
-  backoffLimit: 3
+  backoffLimit: 5
   template:
     metadata:
       labels:
         app: controlplane-seed
         type: edc-job-${ENVIRONMENT}
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
       initContainers:
         - name: wait-for-controlplane
           image: curlimages/curl:8.20.0
@@ -55,11 +55,11 @@ spec:
             - |
               set -e
 
-              ASSETS_URL="http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/assets"
-              POLICIES_URL="http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/policydefinitions"
-              CONTRACTDEFS_URL="http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/contractdefinitions"
-              DATAPLANE_URL="http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4beta/dataplanes/ZGlkOndlYjppZGVudGl0eWh1Yi5wcm92aWRlci5zdmMuY2x1c3Rlci5sb2NhbCUzQTcwODM6cHJvdmlkZXI="
-              CEL_URL="http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v5beta/celexpressions"
+              ASSETS_URL="http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/assets"
+              POLICIES_URL="http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/policydefinitions"
+              CONTRACTDEFS_URL="http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/contractdefinitions"
+              DATAPLANE_URL="http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4beta/dataplanes/ZGlkOndlYjppZGVudGl0eWh1Yi5wcm92aWRlci5zdmMuY2x1c3Rlci5sb2NhbCUzQTcwODM6cHJvdmlkZXI="
+              CEL_URL="http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v5beta/celexpressions"
 
               # Posts to the management API, treating 409 (already exists) as success.
               post() {
@@ -295,10 +295,10 @@ spec:
               echo "Step 3a: Register dataplane with controlplane"
               echo "================================================"
 
-              REG_URL="http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/dataplanes"
+              REG_URL="http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8081/api/mgmt/v4/dataplanes"
               post "${REG_URL}" "PUT" '{
                 "dataplaneId": "anonymous",
-                "endpoint": "http://dataplane.-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling/v1/dataflows",
+                "endpoint": "http://dataplane.provider-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling/v1/dataflows",
                 "transferTypes": [ "HttpData-PULL" ],
                 "labels": [],
                 "authorization": {
@@ -313,10 +313,10 @@ spec:
               echo "Step 3b: Register controlplane with dataplane"
               echo "================================================"
 
-              REG_URL="http://dataplane.-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling/v1/controlplanes"
+              REG_URL="http://dataplane.provider-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling/v1/controlplanes"
               post "${REG_URL}" "PUT" '{
                 "controlplaneId": "anonymous",
-                "endpoint": "http://controlplane.-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling",
+                "endpoint": "http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling",
                 "authorization": {
                   "type": "none"
                 }

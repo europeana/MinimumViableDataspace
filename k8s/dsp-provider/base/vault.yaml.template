@@ -62,7 +62,7 @@ metadata:
   name: vault-bootstrap
   namespace: provider-${ENVIRONMENT}
 spec:
-  backoffLimit: 3
+  backoffLimit: 10
   template:
     metadata:
       labels:
@@ -179,7 +179,7 @@ spec:
               EOF
               
               echo "Vault bootstrap completed successfully!"
-      restartPolicy: Never
+      restartPolicy: OnFailure
 
 
 

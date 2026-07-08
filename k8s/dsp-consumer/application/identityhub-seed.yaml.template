@@ -23,7 +23,7 @@ metadata:
     app: identityhub-seed
     type: edc-job-${ENVIRONMENT}
 spec:
-  backoffLimit: 3
+  backoffLimit: 5
   template:
     metadata:
       labels:
