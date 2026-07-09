@@ -133,6 +133,8 @@ spec:
                 echo "Response body: ${BODY}"
                 exit 1
               fi
+              
+              echo "Debug Response body: ${BODY}"
 
               echo "================================================"
               echo "Step 2: Create Consumer Participant Context in IdentityHub"
@@ -164,7 +166,7 @@ spec:
                     {
                       \"type\": \"ProtocolEndpoint\",
                       \"serviceEndpoint\": \"http://controlplane.consumer-${ENVIRONMENT}.svc.cluster.local:8082/api/dsp/2025-1\",
-                      \"id\": \"consumer-dsp\"
+                      \"id\": \"consumer\"
                     }
                   ],
                   \"active\": true,
@@ -191,6 +193,8 @@ spec:
                 exit 1
               fi
 
+              echo "Debug Response body: ${BODY}"
+                
               echo "================================================"
               echo "Step 3: Requesting credential issuance"
               echo "================================================"
@@ -235,6 +239,9 @@ spec:
                 exit 1
               fi
               
+              echo "Debug Response body: ${BODY}"
+              
+              
               echo "================================================"
               echo "Step 4: Wait for credentials to be issued"
               echo "================================================"
@@ -256,10 +263,13 @@ spec:
                   echo "Response body: ${BODY}"
                   exit 1
                 fi
+                
+                echo "Debug Response body: ${BODY}"
+              
                 STATUS=$(echo "${BODY}" | sed -n 's/.*"status":"\([^"]*\)".*/\1/p')
                 echo "Credential status: ${STATUS}"
                 RETRY=$((RETRY + 1))
-                sleep 5
+                sleep 10
               done
               echo "✓ Credentials are ISSUED"
 
