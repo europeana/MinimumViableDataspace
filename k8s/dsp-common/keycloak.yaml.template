@@ -283,6 +283,7 @@ spec:
   hostnames:
     - keycloak-${ENVIRONMENT}.localhost
     - keycloak.localhost
+    - keycloak-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
   rules:
     - matches:
         - path:
