@@ -281,6 +281,7 @@ spec:
       sectionName: http
   hostnames:
     - keycloak.localhost
+    - com-kc.mvd.test.eanadev.org
   rules:
     - matches:
         - path:
