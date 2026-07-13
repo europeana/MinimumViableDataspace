@@ -17,7 +17,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: identityhub-seed
+  name: identityhub-seed-cons
   namespace: consumer-${ENVIRONMENT}
   labels:
     app: identityhub-seed
