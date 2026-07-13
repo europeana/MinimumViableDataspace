@@ -30,7 +30,7 @@ spec:
         app: identityhub-seed
         type: edc-job-${ENVIRONMENT}
     spec:
-      restartPolicy: OnFailure
+      restartPolicy: Never
       initContainers:
         - name: wait-for-dependencies
           image: curlimages/curl:8.20.0
