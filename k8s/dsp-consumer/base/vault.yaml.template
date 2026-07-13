@@ -109,10 +109,10 @@ spec:
               # Configure JWT auth (example: using Keycloak as JWT backend)
               vault write auth/jwt/config \
                 jwks_url="http://keycloak.dsp-common-${ENVIRONMENT}.svc.cluster.local:8080/realms/mvd/protocol/openid-connect/certs" \
-                default_role="participant" || { echo "Failed to configure JWT auth: need to revert back to ERROR:  exit 1;"; }
+                default_role="participant" || { echo "Failed to configure JWT auth: need to revert back to ERROR:  exit 1;"; exit 1;}
 
               # create mount for participants, each stores their secrets in a subdirectory
-              vault secrets enable -path=participants -version=2 kv || { echo "Failed to enable secrets engine: : need to revert back to ERROR:  exit 1;"; }
+              vault secrets enable -path=participants -version=2 kv || { echo "Failed to enable secrets engine: : need to revert back to ERROR:  exit 1;"; exit 1; }
 
               # get accessor for entity aliases
               ACCESSOR=$(vault auth list | grep 'jwt/' | awk '{print $3}')
@@ -181,7 +181,7 @@ spec:
               EOF
               
               echo "Vault bootstrap completed successfully!"
-      restartPolicy: Never
+      restartPolicy: OnFailure
 
 
 ---

@@ -30,7 +30,7 @@ spec:
         app: identityhub-seed
         type: edc-job-${ENVIRONMENT}
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
       initContainers:
         - name: wait-for-dependencies
           image: curlimages/curl:8.20.0
@@ -120,7 +120,7 @@ spec:
                 -d "{
                   \"did\": \"${PARTICIPANT_DID}\",
                   \"holderId\": \"${PARTICIPANT_DID}\",
-                  \"name\": \"MVD provider Participant\"
+                  \"name\": \"DSP provider Participant\"
                 }")
               HTTP_STATUS=$(echo "${RESPONSE}" | tail -n1)
               BODY=$(echo "${RESPONSE}" | sed '$d')
@@ -164,7 +164,7 @@ spec:
                     {
                       \"type\": \"ProtocolEndpoint\",
                       \"serviceEndpoint\": \"http://controlplane.provider-${ENVIRONMENT}.svc.cluster.local:8082/api/dsp/2025-1\",
-                      \"id\": \"provider\"
+                      \"id\": \"provider-dsp\"
                     }
                   ],
                   \"active\": true,

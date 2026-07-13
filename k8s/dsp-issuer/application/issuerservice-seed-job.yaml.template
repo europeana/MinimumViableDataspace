@@ -32,7 +32,7 @@ spec:
         platform: edcv
         type: edc-job-${ENVIRONMENT}
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
       initContainers:
         # Wait for issuerservice to be ready
         - name: wait-for-issuerservice
@@ -177,7 +177,7 @@ spec:
                   "participantContextId": "issuer",
                   "did": "did:web:issuerservice.dsp-issuer-${ENVIRONMENT}.svc.cluster.local%3A10016:issuer",
                   "key": {
-                    "keyId": "did:web:issuerservice.issuer.svc.cluster.local%3A10016:issuer#key-1",
+                    "keyId": "did:web:issuerservice.dsp-issuer-${ENVIRONMENT}.svc.cluster.local%3A10016:issuer#key-1",
                     "privateKeyAlias": "did:web:issuerservice.dsp-issuer-${ENVIRONMENT}.svc.cluster.local%3A10016:issuer#key-1",
                     "keyGeneratorParams": {
                       "algorithm": "EdDSA"
