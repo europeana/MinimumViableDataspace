@@ -23,7 +23,7 @@ metadata:
     app: identityhub-seed
     type: edc-job-${ENVIRONMENT}
 spec:
-  backoffLimit: 3
+  backoffLimit: 5
   template:
     metadata:
       labels:
@@ -114,28 +114,30 @@ spec:
                 exit 1
               fi
 
-              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${ISSUER_ADMIN_URL}/participants/issuer/holders" \
+              RESPONSE=$(curl -sfS -w "\n%{http_code}" -X POST "${ISSUER_ADMIN_URL}/participants/issuer/holders" \
                 -H "Authorization: Bearer ${ISSUER_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
                   \"did\": \"${PARTICIPANT_DID}\",
                   \"holderId\": \"${PARTICIPANT_DID}\",
-                  \"name\": \"DSP provider Participant\"
+                  \"name\": \"EDSP provider Participant\"
                 }")
               HTTP_STATUS=$(echo "${RESPONSE}" | tail -n1)
               BODY=$(echo "${RESPONSE}" | sed '$d')
               if [ "${HTTP_STATUS}" -eq 200 ] || [ "${HTTP_STATUS}" -eq 201 ]; then
-                echo "✓ provider holder created in IssuerService"
+                echo "✓ Provider holder created in IssuerService"
               elif [ "${HTTP_STATUS}" -eq 409 ]; then
-                echo "⚠ provider holder already exists (HTTP 409), skipping."
+                echo "⚠ Provider holder already exists (HTTP 409), skipping."
               else
                 echo "✗ Unexpected HTTP status: ${HTTP_STATUS}"
                 echo "Response body: ${BODY}"
                 exit 1
               fi
+              
+              echo "Debug Response body: ${RESPONSE}"
 
               echo "================================================"
-              echo "Step 2: Create provider Participant Context in IdentityHub"
+              echo "Step 2: Create Provider Participant Context in IdentityHub"
               echo "================================================"
               
               PROVISIONER_TOKEN=$(curl -sf -X POST "${KC_HOST}/realms/mvd/protocol/openid-connect/token" \
@@ -150,7 +152,7 @@ spec:
                   exit 1
                 fi
 
-              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${IH_URL}" \
+              RESPONSE=$(curl -sfS -w "\n%{http_code}" -X POST "${IH_URL}" \
                 -H "Authorization: Bearer ${PROVISIONER_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
@@ -182,15 +184,17 @@ spec:
               HTTP_STATUS=$(echo "${RESPONSE}" | tail -n1)
               BODY=$(echo "${RESPONSE}" | sed '$d')
               if [ "${HTTP_STATUS}" -eq 200 ] || [ "${HTTP_STATUS}" -eq 201 ]; then
-                echo "✓ provider participant context created"
+                echo "✓ Provider participant context created"
               elif [ "${HTTP_STATUS}" -eq 409 ]; then
-                echo "⚠ provider participant context already exists (HTTP 409), skipping."
+                echo "⚠ Provider participant context already exists (HTTP 409), skipping."
               else
                 echo "✗ Unexpected HTTP status: ${HTTP_STATUS}"
                 echo "Response body: ${BODY}"
                 exit 1
               fi
 
+              echo "Debug Response body: ${RESPONSE}"
+                
               echo "================================================"
               echo "Step 3: Requesting credential issuance"
               echo "================================================"
@@ -208,7 +212,7 @@ spec:
                 fi
               
               HOLDER_PID="credential-request-1"
-              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${IH_URL}${PARTICIPANT_ID}/credentials/request" \
+              RESPONSE=$(curl -fS -w "\n%{http_code}" -X POST "${IH_URL}${PARTICIPANT_ID}/credentials/request" \
                 -H "Authorization: Bearer ${ADMIN_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
@@ -228,12 +232,14 @@ spec:
               
               HTTP_STATUS=$(echo "${RESPONSE}" | tail -n1)
               if [ "${HTTP_STATUS}" -eq 201 ]; then
-                echo "✓ provider participant context created"
+                echo "✓ Provider participant context created"
               else
                 echo "✗ Unexpected HTTP status: ${HTTP_STATUS}"
                 echo "Response body: ${RESPONSE}"
                 exit 1
               fi
+              
+              echo "Debug Response body: ${RESPONSE}"
               
               echo "================================================"
               echo "Step 4: Wait for credentials to be issued"
@@ -256,10 +262,13 @@ spec:
                   echo "Response body: ${BODY}"
                   exit 1
                 fi
+                
+                echo "Debug Response body (Issuance status): ${RESPONSE}"
+              
                 STATUS=$(echo "${BODY}" | sed -n 's/.*"status":"\([^"]*\)".*/\1/p')
                 echo "Credential status: ${STATUS}"
                 RETRY=$((RETRY + 1))
-                sleep 5
+                sleep 10
               done
               echo "✓ Credentials are ISSUED"
 

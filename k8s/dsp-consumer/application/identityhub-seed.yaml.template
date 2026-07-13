@@ -17,7 +17,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: identityhub-seed-cons
+  name: identityhub-seed
   namespace: consumer-${ENVIRONMENT}
   labels:
     app: identityhub-seed
@@ -134,7 +134,7 @@ spec:
                 exit 1
               fi
               
-              echo "Debug Response body: ${BODY}"
+              echo "Debug Response body: ${RESPONSE}"
 
               echo "================================================"
               echo "Step 2: Create Consumer Participant Context in IdentityHub"
@@ -193,7 +193,7 @@ spec:
                 exit 1
               fi
 
-              echo "Debug Response body: ${BODY}"
+              echo "Debug Response body: ${RESPONSE}"
                 
               echo "================================================"
               echo "Step 3: Requesting credential issuance"
@@ -239,8 +239,7 @@ spec:
                 exit 1
               fi
               
-              echo "Debug Response body: ${BODY}"
-              
+              echo "Debug Response body: ${RESPONSE}"
               
               echo "================================================"
               echo "Step 4: Wait for credentials to be issued"

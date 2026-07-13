@@ -35,7 +35,10 @@ spec:
           imagePullPolicy: ${IMAGE_PULL_POLICY}
           ports:
             - containerPort: 8200
-
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
           env:
             - name: VAULT_DEV_ROOT_TOKEN_ID
               value: "root"
@@ -43,10 +46,9 @@ spec:
               value: "0.0.0.0:8200"
             - name: SKIP_SETCAP
               value: "true"
-          securityContext:
-            capabilities:
-              add:
-                - IPC_LOCK
+          args:
+            - "server"
+            - "-dev"
 
 ---
 apiVersion: v1
@@ -62,7 +64,7 @@ metadata:
   name: vault-bootstrap
   namespace: provider-${ENVIRONMENT}
 spec:
-  backoffLimit: 10
+  backoffLimit: 3
   template:
     metadata:
       labels:
@@ -73,15 +75,15 @@ spec:
         - name: vault-cli
           image: hashicorp/vault:2.0.0
           imagePullPolicy: ${IMAGE_PULL_POLICY}
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
           env:
             - name: VAULT_ADDR
               value: "http://vault.provider-${ENVIRONMENT}.svc.cluster.local:8200"
             - name: VAULT_TOKEN
               value: "root"
-          securityContext:
-            capabilities:
-              add:
-                - IPC_LOCK
           command: [ "sh", "-ec" ]
           args:
             - |
@@ -180,7 +182,6 @@ spec:
               
               echo "Vault bootstrap completed successfully!"
       restartPolicy: OnFailure
-
 
 
 ---
