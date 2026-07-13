@@ -114,7 +114,7 @@ spec:
                 exit 1
               fi
 
-              RESPONSE=$(curl -sfS -w "\n%{http_code}" -X POST "${ISSUER_ADMIN_URL}/participants/issuer/holders" \
+              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${ISSUER_ADMIN_URL}/participants/issuer/holders" \
                 -H "Authorization: Bearer ${ISSUER_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
@@ -152,7 +152,7 @@ spec:
                   exit 1
                 fi
 
-              RESPONSE=$(curl -sfS -w "\n%{http_code}" -X POST "${IH_URL}" \
+              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${IH_URL}" \
                 -H "Authorization: Bearer ${PROVISIONER_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{

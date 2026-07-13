@@ -114,7 +114,7 @@ spec:
                 exit 1
               fi
 
-              RESPONSE=$(curl -sfS -w "\n%{http_code}" -X POST "${ISSUER_ADMIN_URL}/participants/issuer/holders" \
+              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${ISSUER_ADMIN_URL}/participants/issuer/holders" \
                 -H "Authorization: Bearer ${ISSUER_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
@@ -152,7 +152,7 @@ spec:
                   exit 1
                 fi
 
-              RESPONSE=$(curl -sfS -w "\n%{http_code}" -X POST "${IH_URL}" \
+              RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${IH_URL}" \
                 -H "Authorization: Bearer ${PROVISIONER_TOKEN}" \
                 -H "Content-Type: application/json" \
                 -d "{
@@ -246,7 +246,7 @@ spec:
               echo "================================================"
 
               STATUS=""
-              MAX_RETRIES=30
+              MAX_RETRIES=50
               RETRY=0
               while [ "${STATUS}" != "ISSUED" ]; do
                 if [ "${RETRY}" -ge "${MAX_RETRIES}" ]; then
