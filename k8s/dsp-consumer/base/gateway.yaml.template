@@ -36,8 +36,6 @@ spec:
       allowedRoutes:
         namespaces:
           from: All  #or Same or Selector
-      namespacePolicy:
-        from: All
       tls:
         mode: Terminate
         certificateRefs:    
