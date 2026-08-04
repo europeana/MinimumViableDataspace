@@ -101,10 +101,14 @@ metadata:
   name: controlplane
   namespace: provider-${ENVIRONMENT}
 spec:
-  parentRefs:
+  parentRefs: #allow both http and https
     - name: provider-gateway
       kind: Gateway
-      sectionName: http
+#      sectionName: http 
+#    - name: provider-gateway
+#      kind: Gateway
+#      sectionName: https 
+       
   hostnames:
     - cp.provider-${ENVIRONMENT}.localhost
     - cp.provider-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}

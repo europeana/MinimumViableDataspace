@@ -30,17 +30,17 @@ spec:
 #          - kind: HTTPRoute
 #            group: gateway.networking.k8s.io
 
-#    - name: https
-#      protocol: HTTPS
-#      port: 443
-#      allowedRoutes:
-#        namespaces:
-#          from: All  #or Same or Selector
-#      namespacePolicy:
-#        from: All
-#incorect--
-#      mode: Terminate
-#      certificateRefs:    
-#        - kind: Secret
-#          name: ${TLS_SECRET}  # present both in test and acceptance
-#          group: ""
+    - name: https
+      protocol: HTTPS
+      port: 443
+      allowedRoutes:
+        namespaces:
+          from: All  #or Same or Selector
+      namespacePolicy:
+        from: All
+      tls:
+        mode: Terminate
+        certificateRefs:    
+          - kind: Secret
+            name: ${TLS_SECRET}  # present both in test and acceptance
+            group: ""

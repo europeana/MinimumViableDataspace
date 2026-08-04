@@ -98,7 +98,7 @@ spec:
   parentRefs:
     - name: consumer-gateway
       kind: Gateway
-      sectionName: http
+      #sectionName: http
   hostnames:
     - cp.consumer-${ENVIRONMENT}.localhost
     - cp.consumer-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
