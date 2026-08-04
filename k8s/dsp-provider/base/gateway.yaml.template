@@ -40,4 +40,5 @@ spec:
         certificateRefs:    
           - kind: Secret
             name: ${TLS_SECRET}  # present both in test and acceptance
+            namespace: ${ENVIRONMENT}
             group: ""
