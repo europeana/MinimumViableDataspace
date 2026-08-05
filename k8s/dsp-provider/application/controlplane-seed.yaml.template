@@ -300,6 +300,7 @@ spec:
                 "dataplaneId": "anonymous",
                 "endpoint": "http://dataplane.provider-${ENVIRONMENT}.svc.cluster.local:8182/api/signaling/v1/dataflows",
                 "transferTypes": [ "HttpData-PULL" ],
+                "sourceTypes": [ "HttpData", "HttpCertData" ],
                 "labels": [],
                 "authorization": {
                   "type": "none"
@@ -323,6 +324,12 @@ spec:
               }'
               
               echo "✓ controlplane registered with dataplane"
+              
+              #post "${DATAPLANE_URL}" "POST" '{
+              # "allowedSourceTypes": [ "HttpData", "HttpCertData" ],
+              # "allowedTransferTypes": [ "HttpData-PULL" ],
+              # "url": "http://dataplane.provider-${ENVIRONMENT}.svc.cluster.local:8083/api/control/v1/dataflows"
+              #echo "✓ Allowed source types defined in the data plane"
               
               echo ""
               echo "================================================"
