@@ -104,10 +104,10 @@ spec:
   parentRefs: #allow both http and https
     - name: provider-gateway
       kind: Gateway
-#      sectionName: http 
-#    - name: provider-gateway
-#      kind: Gateway
-#      sectionName: https 
+      sectionName: http 
+    - name: provider-gateway
+      kind: Gateway
+      sectionName: https 
        
   hostnames:
     - cp.provider-${ENVIRONMENT}.localhost
