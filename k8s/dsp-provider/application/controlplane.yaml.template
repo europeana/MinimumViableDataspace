@@ -105,6 +105,105 @@ spec:
     - name: provider-gateway
       kind: Gateway
       sectionName: http 
+       
+  hostnames:
+    - cp.provider-${ENVIRONMENT}.localhost
+    - cp.provider-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: controlplane
+          port: 8081
+          weight: 1
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /management
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /api/mgmt     
+      backendRefs:
+        - name: controlplane
+          port: 8081
+          weight: 1
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/dsp
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /api/dsp     
+      backendRefs:
+        - name: controlplane
+          port: 8082
+          weight: 1
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/control
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /api/control     
+      backendRefs:
+        - name: controlplane
+          port: 8083
+          weight: 1
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/signaling
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /api/signaling     
+      backendRefs:
+        - name: controlplane
+          port: 8182
+          weight: 1
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/check/
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /api/check/     
+      #SG: CORS Midleware
+#        - type: ExtensionRef
+#          extensionRef:
+#            group:  traefik.io
+#            kind: Middleware
+#            name: prov-edc-cors-config
+      #      name: traefik-globalcorsmiddleware@kubernetescrd
+      backendRefs:
+        - name: controlplane
+          port: 8080
+          weight: 1
+   
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: controlplane-https
+  namespace: provider-${ENVIRONMENT}
+spec:
+  parentRefs: #allow both http and https
     - name: provider-gateway
       kind: Gateway
       sectionName: https 
@@ -198,7 +297,6 @@ spec:
         - name: controlplane
           port: 8080
           weight: 1
-   
   
   
   
