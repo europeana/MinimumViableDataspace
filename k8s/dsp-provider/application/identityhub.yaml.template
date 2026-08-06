@@ -103,7 +103,8 @@ spec:
   parentRefs:
     - name: provider-gateway
       kind: Gateway
-      sectionName: http
+      namespace: provider-${ENVIRONMENT}
+#      sectionName: web
   hostnames:
     - ih.provider-${ENVIRONMENT}.localhost
     - ih.provider-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}

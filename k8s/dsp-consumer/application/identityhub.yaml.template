@@ -103,7 +103,7 @@ spec:
   parentRefs:
     - name: consumer-gateway
       kind: Gateway
-      sectionName: http
+#      sectionName: web
   hostnames:
     - ih.consumer-${ENVIRONMENT}.localhost
     - ih.consumer-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}

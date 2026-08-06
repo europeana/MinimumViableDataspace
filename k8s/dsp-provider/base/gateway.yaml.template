@@ -20,7 +20,7 @@ metadata:
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: http
+    - name: web
       protocol: HTTP
       port: 80
       allowedRoutes:
@@ -29,7 +29,7 @@ spec:
 #        kinds:
 #          - kind: HTTPRoute
 #            group: gateway.networking.k8s.io
-    - name: https
+    - name: websecure
       protocol: HTTPS
       port: 443
       allowedRoutes:
