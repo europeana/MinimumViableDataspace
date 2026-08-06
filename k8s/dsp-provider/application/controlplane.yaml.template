@@ -216,7 +216,7 @@ spec:
             group:  traefik.io
             kind: Middleware
             #namespace included as first part of the name <namespace>-<middleware-name>
-            name: provider-${ENVIRONMENT}-provider-cors-middleware
+            name: provider-cors-middleware
             
       #      name: traefik-globalcorsmiddleware@kubernetescrd
       backendRefs:
