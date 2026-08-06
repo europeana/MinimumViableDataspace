@@ -114,7 +114,7 @@ spec:
     #  - "Cookie"
     #  - "x-api-key"
     accessControlAllowOriginList:
-      - "*"
+      - "${DSP_DASHBOARD_HOST}"
     accessControlExposeHeaders:
       - "*"
     accessControlMaxAge: 3600
