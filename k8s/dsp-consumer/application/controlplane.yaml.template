@@ -163,20 +163,20 @@ spec:
           port: 8082
           weight: 1
      
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /api/control
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /api/control     
-      backendRefs:
-        - name: controlplane
-          port: 8083
-          weight: 1
+#    - matches:
+#        - path:
+#            type: PathPrefix
+#            value: /api/control
+#      filters:
+#        - type: URLRewrite
+#          urlRewrite:
+#            path:
+#              type: ReplacePrefixMatch
+#              replacePrefixMatch: /api/control     
+#      backendRefs:
+#        - name: controlplane
+#          port: 8083
+#          weight: 1
  
     - matches:
         - path:
