@@ -138,7 +138,7 @@ spec:
 #      sectionName: web 
   hostnames:
     - cp.provider-${ENVIRONMENT}.localhost
-    - cp.provider-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
+    - cp-provider-${ENVIRONMENT}.${DEPLOYMENT_BASE_URL}
   rules:
     - matches:
         - path:
