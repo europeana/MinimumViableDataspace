@@ -95,6 +95,32 @@ spec:
       targetPort: 1044
 
 ---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: provider-cors-middleware
+  namespace: provider-${ENVIRONMENT}
+spec:
+  headers:
+    accessControlAllowMethods:
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+      - "DELETE"
+      - "POST"
+    accessControlAllowHeaders:
+      - "Authorization"
+      - "Content-Type"
+      - "Origin"
+      - "Cookie"
+      - "x-api-key"
+    accessControlAllowOriginList:
+      - "*"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+
+
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -189,7 +215,8 @@ spec:
           extensionRef:
             group:  traefik.io
             kind: Middleware
-            name: traefik-global-cors@kubernetescrd
+            name: provider-cors-middleware
+            
       #      name: traefik-globalcorsmiddleware@kubernetescrd
       backendRefs:
         - name: controlplane
