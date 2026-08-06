@@ -216,7 +216,7 @@ spec:
             group:  traefik.io
             kind: Middleware
             name: provider-cors-middleware
-            
+            namespace: provider-${ENVIRONMENT}
       #      name: traefik-globalcorsmiddleware@kubernetescrd
       backendRefs:
         - name: controlplane
