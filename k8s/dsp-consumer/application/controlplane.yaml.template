@@ -100,12 +100,12 @@ metadata:
 spec:
   headers:
     accessControlAllowMethods:
-    #  - "*"
       - "GET"
       - "OPTIONS"
       - "PUT"
       - "DELETE"
       - "POST"
+    #  - "*"
     accessControlAllowHeaders:
       - "*"
     #  - "Authorization"
@@ -115,7 +115,7 @@ spec:
     #  - "x-api-key"
     accessControlAllowOriginList:
       - "*"
-      - "${DSP_DASHBOARD_HOST}"
+      #- "${DSP_DASHBOARD_HOST}"
     accessControlExposeHeaders:
       - "*"
     accessControlMaxAge: 3600
