@@ -100,12 +100,12 @@ metadata:
 spec:
   headers:
     accessControlAllowMethods:
-      - "*"
-    #  - GET"
-    #  - "OPTIONS"
-    #  - "PUT"
-    #  - "DELETE"
-    #  - "POST"
+    #  - "*"
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+      - "DELETE"
+      - "POST"
     accessControlAllowHeaders:
       - "*"
     #  - "Authorization"
@@ -114,6 +114,7 @@ spec:
     #  - "Cookie"
     #  - "x-api-key"
     accessControlAllowOriginList:
+      - "*"
       - "${DSP_DASHBOARD_HOST}"
     accessControlExposeHeaders:
       - "*"
